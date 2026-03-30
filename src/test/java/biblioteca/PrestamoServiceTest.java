@@ -16,5 +16,30 @@ class PrestamoServiceTest {
         assertEquals("Ingrese un código de préstamo válido", resultado);
     }
 
+    @Test
+    void testCodigoLibroInvalido() {
+        String resultado = service.validarCodigoLibro("ABC123");
+        assertEquals("Ingrese un código de libro válido", resultado);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
