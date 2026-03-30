@@ -3,6 +3,7 @@ package biblioteca;
 public class PrestamoService {
 
     public String validarCodigoPrestamo(String codigo) {
+        // Validación: 6 caracteres, 2 letras mayúsculas + 4 números
         if (codigo == null || codigo.length() != 6) {
             return "Ingrese un código de préstamo válido";
         }
@@ -18,6 +19,6 @@ public class PrestamoService {
     }
 
 
-    }
+}
 
 
