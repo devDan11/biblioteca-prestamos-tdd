@@ -17,11 +17,26 @@ class PrestamoServiceTest {
     }
 
     @Test
+    @DisplayName("Código de préstamo con formato correcto")
     void testCodigoLibroInvalido() {
         String resultado = service.validarCodigoLibro("ABC123");
         assertEquals("Ingrese un código de libro válido", resultado);
     }
 
+
+    @Test
+    void testNombreUsuarioInvalido_MenosDe4Caracteres() {
+        String resultado = service.validarNombreUsuario("Ana");
+        assertEquals("El nombre del usuario debe tener al menos cuatro caracteres alfabéticos",
+                resultado);
+    }
+
+    @Test
+    void testNombreUsuarioInvalido_ConNumeros() {
+        String resultado = service.validarNombreUsuario("Maria123");
+        assertEquals("El nombre del usuario debe tener al menos cuatro caracteres alfabéticos",
+                resultado);
+    }
 
 
 
