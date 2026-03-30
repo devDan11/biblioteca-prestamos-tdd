@@ -50,6 +50,7 @@ class PrestamoServiceTest {
 
 
     @Test
+    @DisplayName("Fecha de devolución igual a la fecha de préstamo")
     void testFechaDevolucionInvalida_MenorOIgual() {
         LocalDate fechaPrestamo = LocalDate.now();
         LocalDate fechaDevolucion = LocalDate.now(); // Mismo día (inválido)
@@ -58,6 +59,31 @@ class PrestamoServiceTest {
                 resultado);
     }
 
+
+
+    @Test
+    @DisplayName("Registro completo exitoso")
+    void testRegistroCompletoExitoso() {
+        Prestamo prestamo = new Prestamo();
+        prestamo.setCodigoPrestamo("PR1234");
+        prestamo.setCodigoLibro("LI001");
+        prestamo.setNombreUsuario("Maria");
+        prestamo.setFechaPrestamo(LocalDate.now());
+        prestamo.setFechaDevolucion(LocalDate.now().plusDays(7));
+
+        String resultado = service.registrarPrestamo(prestamo);
+        assertEquals("El préstamo ha sido registrado correctamente", resultado);
+    }
+
+    @Test
+    @DisplayName("Registro con campos vacíos")
+    void testRegistroConCamposVacios() {
+        Prestamo prestamo = new Prestamo();
+
+
+        String resultado = service.registrarPrestamo(prestamo);
+        assertEquals("Debe ingresar todos los datos requeridos", resultado);
+    }
 
 
 
