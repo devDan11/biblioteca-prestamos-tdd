@@ -19,6 +19,15 @@ public class PrestamoService {
     }
 
 
+
+    public String validarCodigoLibro(String codigo) {
+        if (codigo == null || codigo.length() != 5 || !codigo.matches("[A-Za-z0-9]{5}")) {
+            return "Ingrese un código de libro válido";
+        }
+        return "OK";
+    }
+
+
 }
 
 
