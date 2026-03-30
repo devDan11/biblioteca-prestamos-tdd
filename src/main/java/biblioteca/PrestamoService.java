@@ -1,5 +1,7 @@
 package biblioteca;
 
+import java.time.LocalDate;
+
 public class PrestamoService {
 
     public String validarCodigoPrestamo(String codigo) {
@@ -34,6 +36,17 @@ public class PrestamoService {
         }
         return "OK";
     }
+
+
+
+
+    public String validarFechaPrestamo(LocalDate fecha) {
+        if (fecha == null || fecha.isAfter(LocalDate.now())) {
+            return "Ingrese una fecha de préstamo válida";
+        }
+        return "OK";
+    }
+
 
 
 
