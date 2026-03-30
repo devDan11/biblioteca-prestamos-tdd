@@ -48,6 +48,12 @@ public class PrestamoService {
     }
 
 
+    public String validarFechaDevolucion(LocalDate fechaPrestamo, LocalDate fechaDevolucion) {
+        if (fechaDevolucion == null || !fechaDevolucion.isAfter(fechaPrestamo)) {
+            return "La fecha de devolución debe ser posterior a la fecha de préstamo";
+        }
+        return "OK";
+    }
 
 
 

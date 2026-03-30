@@ -49,6 +49,14 @@ class PrestamoServiceTest {
     }
 
 
+    @Test
+    void testFechaDevolucionInvalida_MenorOIgual() {
+        LocalDate fechaPrestamo = LocalDate.now();
+        LocalDate fechaDevolucion = LocalDate.now(); // Mismo día (inválido)
+        String resultado = service.validarFechaDevolucion(fechaPrestamo, fechaDevolucion);
+        assertEquals("La fecha de devolución debe ser posterior a la fecha de préstamo",
+                resultado);
+    }
 
 
 
