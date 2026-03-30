@@ -28,6 +28,16 @@ public class PrestamoService {
     }
 
 
+    public String validarNombreUsuario(String nombre) {
+        if (nombre == null || nombre.length() < 4 || !nombre.matches("[a-zA-Z]+")) {
+            return "El nombre del usuario debe tener al menos cuatro caracteres alfabéticos";
+        }
+        return "OK";
+    }
+
+
+
+
 }
 
 
