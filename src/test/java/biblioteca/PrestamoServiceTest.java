@@ -1,5 +1,6 @@
 package biblioteca;
 
+import java.time.LocalDate;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -25,6 +26,7 @@ class PrestamoServiceTest {
 
 
     @Test
+    @DisplayName("Nombre de usuario con menos de 4 caracteres")
     void testNombreUsuarioInvalido_MenosDe4Caracteres() {
         String resultado = service.validarNombreUsuario("Ana");
         assertEquals("El nombre del usuario debe tener al menos cuatro caracteres alfabéticos",
@@ -38,7 +40,13 @@ class PrestamoServiceTest {
                 resultado);
     }
 
-
+    @Test
+    @DisplayName("Fecha de préstamo en el futuro")
+    void testFechaPrestamoInvalida_Futura() {
+        LocalDate fechaFutura = LocalDate.now().plusDays(1);
+        String resultado = service.validarFechaPrestamo(fechaFutura);
+        assertEquals("Ingrese una fecha de préstamo válida", resultado);
+    }
 
 
 
