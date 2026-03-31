@@ -79,5 +79,34 @@ class OrdenServiceTest {
         System.out.println(">>> TEST PASÓ CORRECTAMENTE");
     }
 
+    // TEST 2: Orden cancelada por falta de stock
+    @Test
+    @DisplayName("Orden cancelada por falta de stock")
+    void testOrdenCanceladaPorFaltaStock() {
+        System.out.println(">>> Ejecutando testOrdenCanceladaPorFaltaStock");
+
+        Producto productoSinStock = new Producto("P003", "Teclado", 100.0, 1);
+
+        when(clienteRepository.findById("C001")).thenReturn(Optional.of(clienteActivo));
+        when(productoRepository.findByCodigo("P001")).thenReturn(Optional.of(productoLaptop));
+        when(productoRepository.findByCodigo("P003")).thenReturn(Optional.of(productoSinStock));
+
+        OrdenRequest request = new OrdenRequest();
+        request.setClienteId("C001");
+        request.setItems(Arrays.asList(
+                new ItemRequest("P001", 1),
+                new ItemRequest("P003", 5)
+        ));
+
+        ResultadoOrden resultado = ordenService.registrarOrden(request);
+
+        System.out.println("Resultado exitoso: " + resultado.isExitoso());
+        System.out.println("Mensaje: " + resultado.getMensaje());
+
+        assertFalse(resultado.isExitoso());
+        assertEquals("Stock insuficiente para: Teclado", resultado.getMensaje());
+
+        System.out.println(">>> TEST PASÓ CORRECTAMENTE");
+    }
 
 }
